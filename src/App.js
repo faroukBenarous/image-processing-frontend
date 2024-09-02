@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+
 function App() {
+  const BACKEND_HOST = 'http://localhost:3000';
   const [selectedFile, setSelectedFile] = useState(null);
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
@@ -19,7 +21,8 @@ function App() {
     formData.append('file', selectedFile);
 
     try {
-      const response = await axios.post('http://localhost:3000/image-processor/passport', formData, {
+      console.log({BACKEND_HOST})
+      const response = await axios.post(`${BACKEND_HOST}/image-processor/passport`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
